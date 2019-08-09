@@ -3,6 +3,101 @@
 {{ partial "header" . }}
 
 <div id="body">
+        {{ if .Params.toc -}}
+        <!-- 来源https://github.com/naah69/hugo-theme-artwhite -->
+        <!--悬浮目录-->
+        <div id="toc_div" style="margin: 10px;border: 1px solid gray;z-index:99999;">
+            <header style="background-color: #f3f3f3;color: black;border-bottom: 1px solid gray;padding: 10px 10px 10px 10px;">
+                <strong id="toc_btn_open" style="color: black;font-size: large;">目录</strong>
+                <strong id="toc_btn_close" style="color: black;font-size: large;float: right">╳</strong>
+            </header>
+            <div id="toc_list" style="background-color: #f3f3f3;color: black;padding: 10px;">
+                {{.TableOfContents}}
+            </div>
+        </div>
+        <style type="text/css">
+            header.intro-header {
+                background-image: url('{{ if .Params.image }}{{ .Params.image | absURL }}{{ else }}{{ .Site.Params.header_image | absURL}}{{ end }}')
+            }
+        
+            #toc_div {
+                position: fixed;
+                display: none;
+                width: 10.6%;
+                height: auto;
+                font-size: 13px;
+            }
+        
+            #toc_list a:hover,
+            #toc_list a:active {
+                color: #ba3925;
+            }
+        </style>
+        <script>
+            $(document).ready(function () {
+                top();
+                $('#toc_div').css('left', '0px');
+                $("#toc_div").css('display', 'block');
+
+                function top() {
+                    if ($('.container').width() <= 720) {
+                        $("#toc_div").css('top', '0px');
+                    } else {
+
+                        $("#toc_div").css('top', window.innerHeight / 9 + 'px');
+                    }
+                }
+
+                function ishide() {
+
+                    if ($('.container').width() <= 720) {
+                        $("#toc_div").css('top', '0px');
+                        // $("#toc_btn_close").hide()
+                        // $('#toc_div #toc_list').hide();
+                        // $('#toc_div header').css("border-bottom","");
+                    } else {
+                        $("#toc_div").css('display', 'block');
+                    }
+                }
+
+                $(window).scroll(function () {
+                    ishide();
+                    if (($(window).scrollTop() != 0) && ($('#toc_div').css('display') == 'block')) {
+                        top();
+                    }
+                });
+
+                window.onresize = function () {
+                    ishide();
+                }
+
+                $("#toc_btn_open").click(function () {
+                    switch ($('#toc_div #toc_list').css('display')) {
+                        case "none":
+                            $("#toc_btn_close").show()
+                            $('#toc_div #toc_list').show();
+                            $('#toc_div header').css("border-bottom", "1px solid gray");
+                            break;
+                        default:
+                            break;
+                    }
+                });
+
+                $("#toc_btn_close").click(function () {
+                    switch ($('#toc_div #toc_list').css('display')) {
+                        case "block":
+                            $("#toc_btn_close").hide()
+                            $('#toc_div #toc_list').hide();
+                            $('#toc_div header').css("border-bottom", "");
+                            break;
+                        default:
+                            break;
+                    }
+                });
+            });
+        </script>
+        {{- end }}
+        
     <div class="container">
         <div class="col-group">
 
@@ -26,14 +121,6 @@
                         {{ if .Site.Params.busuanzi }}
                         <div class="post-meta">
                             <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span> 阅读</span></span>
-                        </div>
-                        {{ end }}
-                        {{ if .Params.toc }}
-                        <div class="clear">
-                            <div class="toc-article">
-                                <div class="toc-title">文章目录</div>
-                                {{.TableOfContents}}
-                            </div>
                         </div>
                         {{ end }}
                         <div class="post-content">
