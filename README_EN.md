@@ -82,14 +82,14 @@ theme = "maupassant"
   url = "http://mirrors.flysnow.org/"
 ```
 
-#### TOC
+#### Floating TOC
 
-TOC support in Front Matter .
+Floating TOC support in Front Matter .
 
 ```toml
 toc = true
 ```
-
+Floating TOC preview [https://kkua.github.io/post/java-util-code-snippet/](https://kkua.github.io/post/java-util-code-snippet/)
 #### Ads
 
 ```toml
@@ -136,6 +136,107 @@ disqusShortname = "yourdiscussshortname"
 [params]
   busuanzi = true
 ```
+
+#### Draw Diagram
+- sequence diagram(powered by [js-sequence](https://bramp.github.io/js-sequence-diagrams/))
+  1. global setting, add below config to `config.toml`.
+  
+     ```toml
+     [params.sequenceDiagrams]
+         enable = true
+         options = ""            # default: "{theme: 'simple'}"
+     ```
+     
+  2. Configure for an article itself only, add below config to `Front Matter` of the article.
+  
+     ```yaml
+     sequenceDiagrams
+       enable: true
+     ```
+  
+  Then set language identifier of code blocks as `sequence`. For example
+  
+  ```
+  ​```sequence
+  Alice->Bob: Hello Bob, how are you?
+  Note right of Bob: Bob thinks
+  Bob-->Alice: I am good thanks!
+  ​```
+  ```
+  
+- flowchart diagram(powered by [flowchart.js](http://flowchart.js.org/))
+  1. Global setting, add below config to `config.toml`.
+  
+     ```toml
+     [params.flowchartDiagrams]
+       enable = true
+       options = ""
+     ```
+     
+  2. Configure for an article itself only, add below config to `Front Matter` of the article.
+  
+     ```yaml
+     flowchartDiagrams:
+       enable: true
+     ```
+  
+  Then set language identifier of code blocks as `flowchat` or `flow`. For example
+  
+   ```
+  ​```flow
+  st=>start: Start
+  op=>operation: Your Operation
+  cond=>condition: Yes or No?
+  e=>end
+  
+  st->op->cond
+  cond(yes)->e
+  cond(no)->op
+  ​```
+   ```
+  
+- graphviz(powered by [viz.js](https://github.com/mdaines/viz.js))
+
+  It should be configured for an article itself only，add below config to `Front Matter` of the article.
+
+  ```yaml
+  graphviz:
+    enable: true
+  ```
+
+  Then set language identifier of code blocks as `viz-<engin>`, engin parameter is the name of graphviz engin including `circo`、`dot`、`fdp`、`neato` 、`osage`和`twopi`. For example
+  
+  ```
+  ​```viz-dot
+  digraph G {
+  
+  	subgraph cluster_0 {
+  		style=filled;
+  		color=lightgrey;
+  		node [style=filled,color=white];
+  		a0 -> a1 -> a2 -> a3;
+  		label = "process #1";
+  	}
+  
+  	subgraph cluster_1 {
+  		node [style=filled];
+  		b0 -> b1 -> b2 -> b3;
+  		label = "process #2";
+  		color=blue
+  	}
+  	start -> a0;
+  	start -> b0;
+  	a1 -> b3;
+  	b2 -> a3;
+  	a3 -> a0;
+  	a3 -> end;
+  	b3 -> end;
+  
+  	start [shape=Mdiamond];
+  	end [shape=Msquare];
+  }
+  ​```
+  ```
 
 ## Contributing
 

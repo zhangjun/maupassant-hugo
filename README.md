@@ -100,7 +100,7 @@ theme = "maupassant"
 
 `identifier`标志符必须是唯一的，不能重复；`weight`用于排序，值越小越靠前。
 
-####  文章目录（大纲）
+####  悬浮文章目录（大纲）
 
 该主题支持文章目录（大纲）,大纲是通过`h1~h7`标题自动生成，在MD文件里就是`##`这类标题的标记，这里建议最多使用两层文章目录，而且最好是从`h2`开始，便于SEO优化。
 如果要开启一篇文章的文章目录，只需要在`Front Matter` 添加`toc=true`即可，默认是不开启文章目录的。
@@ -108,7 +108,7 @@ theme = "maupassant"
 ```toml
 toc = true
 ```
-
+具体效果参考[https://kkua.github.io/post/java-util-code-snippet/](https://kkua.github.io/post/java-util-code-snippet/)
 #### 友情链接
 
 ```toml
@@ -268,6 +268,107 @@ disablePathToLower = true
 ```
 
 * youku（youku.html）
+#### 绘图支持
+- 序列图(使用[js-sequence](https://bramp.github.io/js-sequence-diagrams/))
+  1. 全局使用，在`config.toml`中添加如下配置
+  
+     ```toml
+     [params.sequenceDiagrams]
+         enable = true
+         options = ""            # default: "{theme: 'simple'}"
+     ```
+     
+  2. 每篇文章单独设置，在`Front Matter` 添加如下内容
+  
+     ```yaml
+     sequenceDiagrams
+       enable: true
+     ```
+  
+   将代码块的语言标识符设置为`sequence`。例如
+  
+  ```
+  ​```sequence
+  Alice->Bob: Hello Bob, how are you?
+  Note right of Bob: Bob thinks
+  Bob-->Alice: I am good thanks!
+  ​```
+  ```
+  
+- 流程图（使用[flowchart.js](http://flowchart.js.org/)）
+  1. 全局使用，在`config.toml`中添加如下配置
+  
+     ```tom
+     [params.flowchartDiagrams]
+       enable = true
+       options = ""
+     ```
+     
+  2. 每篇文章单独设置，在`Front Matter` 添加如下内容
+  
+     ```yaml
+     flowchartDiagrams:
+       enable: true
+     ```
+  
+  
+   将代码块的语言标识符设置为`flowchat`或者`flow`。例如
+  
+   ```
+  ​```flow
+  st=>start: Start
+  op=>operation: Your Operation
+  cond=>condition: Yes or No?
+  e=>end
+  
+  st->op->cond
+  cond(yes)->e
+  cond(no)->op
+  ​```
+   ```
+  
+- graphviz（[viz.js](https://github.com/mdaines/viz.js))
+
+  需要对每篇文章单独设置是否启用，在`Front Matter` 添加如下内容
+
+  ```yaml
+  graphviz:
+    enable: true
+  ```
+
+  将代码块的语言标识符设置为`viz-<engin>`， engin是选用的graphviz绘图引擎的名称，包括`circo`、`dot`、`fdp`、`neato` 、`osage`和`twopi`。例如
+  
+  ```
+  ​```viz-dot
+  digraph G {
+  
+  	subgraph cluster_0 {
+  		style=filled;
+  		color=lightgrey;
+  		node [style=filled,color=white];
+  		a0 -> a1 -> a2 -> a3;
+  		label = "process #1";
+  	}
+  
+  	subgraph cluster_1 {
+  		node [style=filled];
+  		b0 -> b1 -> b2 -> b3;
+  		label = "process #2";
+  		color=blue
+  	}
+  	start -> a0;
+  	start -> b0;
+  	a1 -> b3;
+  	b2 -> a3;
+  	a3 -> a0;
+  	a3 -> end;
+  	b3 -> end;
+  
+  	start [shape=Mdiamond];
+  	end [shape=Msquare];
+  }
+  ​```
+  ```
 
 ## 贡献
 
@@ -282,3 +383,7 @@ disablePathToLower = true
 + Ghost: https://github.com/LjxPrime/maupassant/
 + Hexo: https://github.com/tufu9441/maupassant-hexo
 + Hugo: https://github.com/rujews/maupassant-hugo
+
+```
+
+```
