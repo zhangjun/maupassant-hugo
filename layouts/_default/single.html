@@ -4,26 +4,24 @@
 
 <div id="body">
         {{ if .Params.toc -}}
-        <!-- 来源https://github.com/naah69/hugo-theme-artwhite -->
         <!--悬浮目录-->
-        <div id="toc_div" style="margin: 10px;border: 1px solid gray;z-index:99999;">
+        <div id="virtual_toc_list" style="display: none">
+            {{.TableOfContents}}
+        </div>
+        <div id="float_toc_div" style="margin: 10px;border: 1px solid gray;z-index:99999;display: none;">
             <header style="background-color: #f3f3f3;color: black;border-bottom: 1px solid gray;padding: 10px 10px 10px 10px;">
                 <strong id="toc_btn_open" style="color: black;font-size: large;">目录</strong>
                 <strong id="toc_btn_close" style="color: black;font-size: large;float: right">╳</strong>
             </header>
             <div id="toc_list" style="background-color: #f3f3f3;color: black;padding: 10px;">
-                {{.TableOfContents}}
+        
             </div>
         </div>
         <style type="text/css">
-            header.intro-header {
-                background-image: url('{{ if .Params.image }}{{ .Params.image | absURL }}{{ else }}{{ .Site.Params.header_image | absURL}}{{ end }}')
-            }
-        
-            #toc_div {
+            #float_toc_div {
                 position: fixed;
                 display: none;
-                width: 10.6%;
+                /* width: 10.6%; */
                 height: auto;
                 font-size: 13px;
             }
@@ -34,67 +32,79 @@
             }
         </style>
         <script>
-            $(document).ready(function () {
-                top();
-                $('#toc_div').css('left', '0px');
-                $("#toc_div").css('display', 'block');
+            window.onload = function () {
+                let tocNavElem = document.getElementById("TableOfContents");
+                let floatTocDivElem = document.getElementById("float_toc_div");
+                let tocListElem = floatTocDivElem.getElementsByTagName('div')[0];
+                let colGroupElem = document.getElementById("body").getElementsByClassName("col-group")[0]
+                let floatTocWidth = (document.body.clientWidth - colGroupElem.offsetWidth) / 2 - 16;
+                var useFloatToc = false;
 
-                function top() {
-                    if ($('.container').width() <= 720) {
-                        $("#toc_div").css('top', '0px');
-                    } else {
+                if (floatTocWidth >= 100) {
+                    useFloatToc = true;
+                    document.getElementById("toc_list").appendChild(tocNavElem);
+                    floatTocDivElem.style.display = 'block';
+                    floatTocDivElem.style.width = floatTocWidth + 'px';
+                    top();
+                    floatTocDivElem.style.left = '0px';
 
-                        $("#toc_div").css('top', window.innerHeight / 9 + 'px');
+                    function top() {
+                        if (document.getElementsByClassName('container')[0].offsetWidth <= 720) {
+                            floatTocDivElem.style.top = '0px';
+                        } else {
+                            floatTocDivElem.style.top = window.innerHeight / 9 + 'px';
+                        }
                     }
+
+                    function ishide() {
+                        if (document.getElementsByClassName('container')[0].offsetWidth <= 720) {
+                            floatTocDivElem.style.top = '0px';
+                        } else {
+                            floatTocDivElem.style.display = 'block';
+                        }
+                    }
+
+                    window.onscroll = function () {
+                        ishide();
+                        if ((document.documentElement.scrollTop != 0) && (floatTocDivElem.style.display == 'block')) {
+                            top();
+                        }
+                    };
+
+                    window.onresize = function () {
+                        ishide();
+                    }
+
+                    document.getElementById("toc_btn_open").addEventListener('click', function () {
+                        switch (tocListElem.style.display) {
+                            case "none":
+                                document.getElementById("toc_btn_close").style.display = "";
+                                tocListElem.style.display = "";
+                                floatTocDivElem.getElementsByTagName("header")[0].style.borderBottom = "1px solid gray";
+                                break;
+                            default:
+                                break;
+                        }
+                    }, false);
+
+                    document.getElementById("toc_btn_close").addEventListener('click', function () {
+                        switch (tocListElem.style.display) {
+                            case "":
+                                document.getElementById("toc_btn_close").style.display = "none";
+                                tocListElem.style.display = "none";
+                                floatTocDivElem.getElementsByTagName("header")[0].style.borderBottom = "";
+                                break;
+                            default:
+                                break;
+                        }
+                    }, false);
+                } else {
+                    let fixedTocElem = document.getElementsByClassName("toc-article")[0];
+                    fixedTocElem.appendChild(tocNavElem);
+                    fixedTocElem.parentElement.style.display = "";
                 }
-
-                function ishide() {
-
-                    if ($('.container').width() <= 720) {
-                        $("#toc_div").css('top', '0px');
-                        // $("#toc_btn_close").hide()
-                        // $('#toc_div #toc_list').hide();
-                        // $('#toc_div header').css("border-bottom","");
-                    } else {
-                        $("#toc_div").css('display', 'block');
-                    }
-                }
-
-                $(window).scroll(function () {
-                    ishide();
-                    if (($(window).scrollTop() != 0) && ($('#toc_div').css('display') == 'block')) {
-                        top();
-                    }
-                });
-
-                window.onresize = function () {
-                    ishide();
-                }
-
-                $("#toc_btn_open").click(function () {
-                    switch ($('#toc_div #toc_list').css('display')) {
-                        case "none":
-                            $("#toc_btn_close").show()
-                            $('#toc_div #toc_list').show();
-                            $('#toc_div header').css("border-bottom", "1px solid gray");
-                            break;
-                        default:
-                            break;
-                    }
-                });
-
-                $("#toc_btn_close").click(function () {
-                    switch ($('#toc_div #toc_list').css('display')) {
-                        case "block":
-                            $("#toc_btn_close").hide()
-                            $('#toc_div #toc_list').hide();
-                            $('#toc_div header').css("border-bottom", "");
-                            break;
-                        default:
-                            break;
-                    }
-                });
-            });
+                document.getElementById("virtual_toc_list").remove();
+            };   
         </script>
         {{- end }}
         
@@ -121,6 +131,13 @@
                         {{ if .Site.Params.busuanzi }}
                         <div class="post-meta">
                             <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span> 阅读</span></span>
+                        </div>
+                        {{ end }}
+                        {{ if .Params.toc }}
+                        <div class="clear" style="display: none">
+                            <div class="toc-article">
+                                <div class="toc-title">文章目录</div>
+                            </div>
                         </div>
                         {{ end }}
                         <div class="post-content">

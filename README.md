@@ -100,7 +100,7 @@ theme = "maupassant"
 
 `identifier`标志符必须是唯一的，不能重复；`weight`用于排序，值越小越靠前。
 
-####  悬浮文章目录（大纲）
+####  文章目录（大纲）
 
 该主题支持文章目录（大纲）,大纲是通过`h1~h7`标题自动生成，在MD文件里就是`##`这类标题的标记，这里建议最多使用两层文章目录，而且最好是从`h2`开始，便于SEO优化。
 如果要开启一篇文章的文章目录，只需要在`Front Matter` 添加`toc=true`即可，默认是不开启文章目录的。
@@ -108,7 +108,7 @@ theme = "maupassant"
 ```toml
 toc = true
 ```
-具体效果参考[https://kkua.github.io/post/java-util-code-snippet/](https://kkua.github.io/post/java-util-code-snippet/)
+当左侧空白空间宽度超过100px时，则显示悬浮目录。具体效果参考[https://kkua.github.io/post/java-util-code-snippet/](https://kkua.github.io/post/java-util-code-snippet/)
 #### 友情链接
 
 ```toml

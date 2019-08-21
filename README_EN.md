@@ -82,14 +82,14 @@ theme = "maupassant"
   url = "http://mirrors.flysnow.org/"
 ```
 
-#### Floating TOC
+#### TOC
 
-Floating TOC support in Front Matter .
+TOC support in Front Matter .
 
 ```toml
 toc = true
 ```
-Floating TOC preview [https://kkua.github.io/post/java-util-code-snippet/](https://kkua.github.io/post/java-util-code-snippet/)
+ If the left blank space more than 100px, it will display Floating TOC. here is preview [https://kkua.github.io/post/java-util-code-snippet/](https://kkua.github.io/post/java-util-code-snippet/)
 #### Ads
 
 ```toml
