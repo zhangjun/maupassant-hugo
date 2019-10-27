@@ -1,4 +1,7 @@
 # Maupassant
+
+[![阿里云 2019双11 ALL IN CLoud 低至1折](./aliyun_2019.jpg "阿里云 2019双11 ALL IN CLoud 低至1折")](https://www.aliyun.com/1111/2019/group-buying-share?ptCode=E3C92908C4DF2D2DBD47C05EA86015AD647C88CF896EF535&userCode=jdg9oj97&share_source=copy_link)
+
 Maupassant theme, ported to Hugo.
 
 1. 预览效果:[飞雪无情的博客](http://www.flysnow.org)
@@ -108,7 +111,7 @@ theme = "maupassant"
 ```toml
 toc = true
 ```
-当左侧空白空间宽度超过100px时，则显示悬浮目录。具体效果参考[https://kkua.github.io/post/java-util-code-snippet/](https://kkua.github.io/post/java-util-code-snippet/)
+当左侧空白空间宽度超过100px时，则显示悬浮目录。
 #### 友情链接
 
 ```toml
