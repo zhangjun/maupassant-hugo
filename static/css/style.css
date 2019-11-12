@@ -114,26 +114,24 @@ blockquote {
     display: block;
     margin-block-start: 1em;
     margin-block-end: 1em;
-    margin-inline-start: 40px;
+    margin-inline-start: 10px;
     margin-inline-end: 40px;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    margin: 2.5em 0;
-    padding: 0 0 0 50px;
-    color: #555;
+    margin: 5px 0;
+    padding: 15px 5px 5px 20px;
+    color: #000;
     border-left: none;
+    background-color: #edf6ff;
 }
 blockquote::before{
-    content: "\201C";
     display: block;
-    font-family: times;
+    font-family: Helvetica, sans-serif, Arial;
     font-style: normal;
-    font-size: 48px;
     color: #444;
     font-weight: bold;
-    line-height: 30px;
-    margin-left: -50px;
     position: absolute; 
+    background-color: #edf6ff;
 }
   
 /**
