@@ -1,6 +1,6 @@
 # Maupassant
 
-[![阿里云 2019双11 ALL IN CLoud 低至1折](./aliyun_2019.jpg "阿里云 2019双11 ALL IN CLoud 低至1折")](https://www.aliyun.com/1111/2019/group-buying-share?ptCode=E3C92908C4DF2D2DBD47C05EA86015AD647C88CF896EF535&userCode=jdg9oj97&share_source=copy_link)
+[![【阿里云双11】热门产品低至1折,全年冰点钜惠,再赢100万红包](./aliyun_2019.jpg "【阿里云双11】热门产品低至1折,全年冰点钜惠,再赢100万红包")](https://www.aliyun.com/1111/2019/home?source=5176.11533457&userCode=jdg9oj97&type=copy)
 
 Maupassant theme, ported to Hugo.
 
