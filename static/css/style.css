@@ -360,7 +360,7 @@ textarea {
     padding-top:27px;
 }
 .post-content h2,.post-content h3,.post-content h4,.post-content h5,.post-content h6 {
-    color: #ba3925;
+    font-weight: bold;
 }
 .page-content{
     padding-top: 40px;
@@ -991,6 +991,39 @@ img.alignright {
     background: #F8F8F8;
     border-bottom-color: #D26911; 
 }
+
+/** adapt ios dark mode */
+@media (prefers-color-scheme: dark) {
+    body {
+      background-color: #444;
+      color: #e4e4e4;
+    }
+    a {
+      color: #e39777;
+    }
+    img {
+      filter: grayscale(30%);
+    }
+    .post-content {
+        color: #e4e4e4;
+    }
+    #logo {
+        color: #e4e4e4;
+    }
+    #nav-menu a {
+        color: #e4e4e4;
+    }
+    .readmore a {
+        color: #e4e4e4;
+    }
+    .post-title {
+        color: #e4e4e4;
+    }
+    .post-title a {
+        color: #e4e4e4;
+    }
+}
+
 /* 版权声明 */
 .post-copyright {
     margin: 2em 0 0;
