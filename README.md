@@ -1,7 +1,5 @@
 # Maupassant
 
-[![【阿里云双11】热门产品低至1折,全年冰点钜惠,再赢100万红包](./aliyun_2019.jpg "【阿里云双11】热门产品低至1折,全年冰点钜惠,再赢100万红包")](https://www.aliyun.com/1111/2019/home?source=5176.11533457&userCode=jdg9oj97&type=copy)
-
 Maupassant theme, ported to Hugo.
 
 1. 预览效果:[飞雪无情的博客](http://www.flysnow.org)
@@ -15,11 +13,12 @@ Maupassant theme, ported to Hugo.
 
 ## 功能特性
 
-1. 最近发表的文章支持，显示最近的10篇 
-2. 分类支持，并且可以显示分类内的文章数量
-3. 标签云支持
-4. 文章目录支持
-4. 一键回到页面顶部
+1. 支持Local Search 站内搜索
+2. 最近发表的文章支持，显示最近的10篇 
+3. 分类支持，并且可以显示分类内的文章数量
+4. 标签云支持
+5. 文章目录支持
+6. 一键回到页面顶部
 13. 支持关键字SEO优化
 6. 自定义菜单支持，不限个数，自定义排序
 7. 自定义友情链接支持
@@ -65,6 +64,14 @@ languageCode = "zh-CN"
 title = "飞雪无情的博客"
 theme = "maupassant"
 
+## 保持分类的原始名字（false会做转小写处理）
+preserveTaxonomyNames = true
+## 是否禁止URL Path转小写
+disablePathToLower = true
+
+hasCJKLanguage = true
+summaryLength = 140
+
 [author]
   name = "飞雪无情"
 
@@ -73,6 +80,8 @@ theme = "maupassant"
   subtitle = "专注于Android、Java、Go语言(golang)、移动互联网、项目管理、软件架构"
   keywords = "golang,go语言,go语言笔记,飞雪无情,java,android,博客,项目管理,python,软件架构,公众号,小程序"
   description = "专注于IT互联网，包括但不限于Go语言(golang)、Java、Android、Python、项目管理、抖音分析、软件架构等"
+  busuanzi = true
+  localSearch = true
 ```
 
 基本配置大家都比较熟悉，这是我的博客的配置，仅供参考。
@@ -112,6 +121,26 @@ theme = "maupassant"
 toc = true
 ```
 当左侧空白空间宽度超过100px时，则显示悬浮目录。
+
+#### Local Search 站内搜索
+
+站内搜索默认是关闭的，如果需要使用需要以下步骤开启。
+
+1. 检查`config.toml`的`disableKinds`配置项,是否禁用了RSS，如果禁用需要开启。
+2. 在`config.toml`中找到`[params]`配置段落，增加`localSearch = true`开启站内搜索
+3. 在`content`目录下新建`search`目录,并且在`search`目录中新建`index.md`文件，内容如下
+
+```
+---
+title: "搜索"
+description: "搜索页面"
+type: "search"
+---
+```
+
+然后`hugo server`启动，打开你的站点，就可以在右上角的搜索框里输入关键字进行站内搜索了。
+
+
 #### 友情链接
 
 ```toml

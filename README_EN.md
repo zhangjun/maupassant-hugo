@@ -89,7 +89,27 @@ TOC support in Front Matter .
 ```toml
 toc = true
 ```
- If the left blank space more than 100px, it will display Floating TOC. here is preview [https://kkua.github.io/post/java-util-code-snippet/](https://kkua.github.io/post/java-util-code-snippet/)
+ If the left blank space more than 100px, it will display Floating TOC. 
+
+
+#### Local Search
+
+If you want to use local search , please following steps:
+
+1. enabled rss,you can visit `http://127.0.0.1:1313/index.xml` check it.
+2. edit `config.toml` file,add `localSearch = true` under the `[params]`.
+3. new `index.md` file in your `content/search/` dir,and write content for:
+
+```
+---
+title: "搜索"
+description: "搜索页面"
+type: "search"
+---
+```
+
+Now ,run `hugo server` and try local search.
+
 #### Ads
 
 ```toml
