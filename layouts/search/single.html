@@ -61,13 +61,13 @@ var getUrlParameter = function getUrlParameter(sParam) {
         $("span.keyword").text(q);
         $("article.post").remove();
         $.ajax({
-            url: "/index.xml",
+            url: '{{"index.xml"|absURL}}',
             dataType: "xml",
             success: function(data) {
                 $(data).find("item").each(function () {
                     var item=$(this);
                     var title=item.find("title").text();
-                    if (title.indexOf(q) > 0){
+                    if (title.toLowerCase().indexOf(q.toLowerCase()) > 0){
                         var url = item.find("link").text();
                         var searchItem=`<article class="post"><header><h1 class="post-title"><a href="`+url+`">`+title+`</a></h1></header>`;
                         var pubDate = new Date(item.find("pubDate").text())
