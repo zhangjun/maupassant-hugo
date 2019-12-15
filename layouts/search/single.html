@@ -67,7 +67,7 @@ var getUrlParameter = function getUrlParameter(sParam) {
                 $(data).find("item").each(function () {
                     var item=$(this);
                     var title=item.find("title").text();
-                    if (title.toLowerCase().indexOf(q.toLowerCase()) > 0){
+                    if (title.toLowerCase().indexOf(q.toLowerCase()) >= 0){
                         var url = item.find("link").text();
                         var searchItem=`<article class="post"><header><h1 class="post-title"><a href="`+url+`">`+title+`</a></h1></header>`;
                         var pubDate = new Date(item.find("pubDate").text())
