@@ -26,10 +26,6 @@ Maupassant theme, ported to Hugo.
 9. 支持GA分析统计
 17. 不蒜子页面计数器支持
 11. 代码高亮、代码行号
-    * markup、css、clike、javascript、c、csharp、bash、cpp
-    * aspnet、dart、docker、markup-templating、erlang
-    * go、groovy、java、json、kotlin、markdown、lua、objectivec
-    * php、python、r、yaml、toml
 10. sitemap站点地图
 5. RSS支持，并且可以自动发现RSS
 14. Google站内搜索
@@ -82,9 +78,34 @@ summaryLength = 140
   description = "专注于IT互联网，包括但不限于Go语言(golang)、Java、Android、Python、项目管理、抖音分析、软件架构等"
   busuanzi = true
   localSearch = true
+
+[markup]
+  [markup.highlight]
+    lineNos = true
+    style = "github"
 ```
 
 基本配置大家都比较熟悉，这是我的博客的配置，仅供参考。
+
+#### 代码高亮
+
+从Hugo v0.60.0开始，默认使用`Goldmark`渲染MD文件，并且默认开启了代码高亮，所以该主题原来的代码高亮兼容出现问题，
+经过取舍，最终还是选用了Hugo原生的代码高亮方式，去掉了原来主题自带的基于JS的代码高亮。
+
+新的Hugo内置的代码高亮使用非常代码，默认不用任何配置就可以，如果你需要开启行号、或者更换代码样式，可以参考如下配置：
+
+*config.toml*
+```toml
+[markup]
+  [markup.highlight]
+    lineNos = true
+    style = "github"
+```
+
+更多配合和样式参考:
+
+[Configure Markup](https://gohugo.io/getting-started/configuration-markup)
+[Syntax Highlighting](https://gohugo.io/content-management/syntax-highlighting/)
 
 #### 自定义菜单
 
