@@ -46,6 +46,10 @@ git clone https://github.com/flysnow-org/maupassant-hugo themes/maupassant
 
 ## 配置
 
+#### 依赖要求
+
+Hugo Version >= v 0.60.0
+
 #### 应用主题
 
 ```toml

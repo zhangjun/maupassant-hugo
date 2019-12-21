@@ -3,7 +3,7 @@
     .post-toc {
         position: fixed;
         width: 200px;
-        margin-left: -220px;
+        margin-left: -210px;
         padding: 5px 10px;
         font-family: Athelas, STHeiti, Microsoft Yahei, serif;
         font-size: 12px;
@@ -25,10 +25,12 @@
     }
 
     .post-toc .post-toc-title {
-        margin: 0 10px;
+        width: 100%;
+        margin: 0 auto;
         font-size: 20px;
         font-weight: 400;
         text-transform: uppercase;
+        text-align: center;
     }
 
     .post-toc .post-toc-content {
@@ -68,6 +70,11 @@
     $(document).ready(function () {
         var postToc = $(".post-toc");
         if (postToc.length) {
+            var leftPos = $("#main").offset().left;
+            if(leftPos<220){
+                postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})
+            }
+
             var t = postToc.offset().top - 20,
                 a = {
                     start: {

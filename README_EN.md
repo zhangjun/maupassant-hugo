@@ -12,6 +12,10 @@ A simple Hugo template with great performance on different devices, ported from 
 
 ## Features
 
+#### Requirements
+
+Hugo Version >= v 0.60.0
+
 ## Installation
 
 ```bash
