@@ -8,7 +8,7 @@
 </header>
 <div class="post-archive">
     {{ range .Data.Terms.ByCount }}
-    <h2><a href="{{ path.Join $.Data.Plural .Term | urlize | absLangURL }}">{{ .Term }}</a> ({{ .Count }})</h2>
+    <h2><a href="{{ path.Join $.Data.Plural .Term | urlize | absLangURL }}">{{ .Page.Title }}</a> ({{ .Count }})</h2>
     <ul class="listing">
         {{ range .Pages }}
         <li>
