@@ -24,6 +24,10 @@
         <date class="post-meta meta-date">
             {{printf "%d年%d月%d日 %02d:%02d:%02d" .Date.Year .Date.Month .Date.Day .Date.Hour .Date.Minute .Date.Second}}
         </date>
+        <div class="post-meta">
+            <span>| 字数 </span>
+            {{ .Content | countrunes }}
+        </div>
         {{ with .Params.Categories }}
         <div class="post-meta meta-category">
             |
