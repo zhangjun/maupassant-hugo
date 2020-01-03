@@ -104,7 +104,6 @@ pre, code {
 }
 pre {
     overflow:auto;
-    border: 1px solid #ddd;
     display: block;
 }
 code {
@@ -371,7 +370,7 @@ textarea {
     overflow: hidden;
 }
 .post-content pre{
-    padding: 1em;
+    padding: 1em 0 1em 1em;
 }
 .post-content code{
     display:inline;
