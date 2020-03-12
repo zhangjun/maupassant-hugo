@@ -992,6 +992,7 @@ img.alignright {
 }
 
 /** adapt ios dark mode */
+/*
 @media (prefers-color-scheme: dark) {
     body {
       background-color: #444;
@@ -1022,6 +1023,7 @@ img.alignright {
         color: #e4e4e4;
     }
 }
+*/
 
 /* 版权声明 */
 .post-copyright {
